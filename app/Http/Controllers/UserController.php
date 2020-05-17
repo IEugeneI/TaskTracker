@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreateRequest;
 use App\User;
 
-
+/**
+ * @group User
+ *
+ * APIs for managing users
+ */
 class UserController extends Controller
 {
     protected $user;
@@ -20,6 +24,7 @@ class UserController extends Controller
     }
 
     /**
+     * Show all users
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
@@ -28,6 +33,8 @@ class UserController extends Controller
     }
 
     /**
+     * Show user by id
+     * @urlParam id required The ID of the user.
      * @param $user
      * @return mixed
      */
@@ -37,8 +44,12 @@ class UserController extends Controller
     }
 
     /**
+     * Create a user
+     * @bodyParam first_name string required  The name of user. Example: Valera
+     * @bodyParam last_name string required The last name of the user. Example: Petrov
+     * @bodyParam email email required unique The email of the user. Example: Petrov@gmail.com
      * @param UserCreateRequest $request
-     * @return mixed
+     * @return
      */
     public function store(UserCreateRequest $request)
     {
@@ -47,6 +58,11 @@ class UserController extends Controller
     }
 
     /**
+     * Update user
+     * @urlParam id required The ID of the user.
+     * @bodyParam first_name string required  The name of user. Example: 9
+     * @bodyParam last_name string required The last name of the user. Example: Valera
+     * @bodyParam email email required unique The email of the user. Example: Petrov
      * @param UserCreateRequest $request
      * @param $id
      * @return string
@@ -59,6 +75,8 @@ class UserController extends Controller
     }
 
     /**
+     * Delete user
+     * @urlParam id required The ID of the user.
      * @param $id
      * @return string
      */
